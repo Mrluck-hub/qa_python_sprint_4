@@ -23,3 +23,11 @@ class TestBooksCollector:
     def test_get_book_genre_return_correct_genre(self, collector):
         collector.books_genre = {'Книга': 'Комедии'}
         assert collector.get_book_genre('Книга') == 'Комедии'
+
+    def test_get_books_with_specific_genre_filters_correctly(self, collector):
+        collector.books_genre = {
+            'Книга 1': 'Фантастика',
+            'Книга 2': 'Ужасы',
+            'Книга 3': 'Фантастика'
+        }
+        assert collector.get_books_with_specific_genre('Фантастика') == ['Книга 1', 'Книга 3']
