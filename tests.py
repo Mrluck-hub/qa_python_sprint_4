@@ -46,4 +46,8 @@ class TestBooksCollector:
         assert 'Оно' not in collector.get_books_for_children()
         assert 'Шерлок' not in collector.get_books_for_children()
         assert 'Звёздные воины' in collector.get_books_for_children()
-        
+
+    def test_add_book_in_favorites_adds_existing_book(self, collector):
+        collector.add_new_book("Оса")
+        collector.add_book_in_favorites("Оса")
+        assert "Оса" in collector.get_list_of_favorites_books()
