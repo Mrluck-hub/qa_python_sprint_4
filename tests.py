@@ -51,3 +51,9 @@ class TestBooksCollector:
         collector.add_new_book("Оса")
         collector.add_book_in_favorites("Оса")
         assert "Оса" in collector.get_list_of_favorites_books()
+
+    def test_delete_book_from_favorites_removes_book(self, collector):
+        collector.add_new_book("Оса")
+        collector.add_book_in_favorites("Оса")
+        collector.delete_book_from_favorites("Оса")
+        assert "Оса" not in collector.get_list_of_favorites_books()
