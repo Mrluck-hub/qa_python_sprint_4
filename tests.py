@@ -31,3 +31,6 @@ class TestBooksCollector:
             'Книга 3': 'Фантастика'
         }
         assert collector.get_books_with_specific_genre('Фантастика') == ['Книга 1', 'Книга 3']
+
+    def test_get_books_genre_is_empty_initially(self, collector):
+        assert collector.get_books_genre() == {}
