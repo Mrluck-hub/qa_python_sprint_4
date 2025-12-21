@@ -34,3 +34,16 @@ class TestBooksCollector:
 
     def test_get_books_genre_is_empty_initially(self, collector):
         assert collector.get_books_genre() == {}
+
+    def test_get_books_for_children_excludes_genres(self, collector):
+        collector.books_genre = {
+            'Шрек': 'Мультфильмы',
+            'Оно': 'Ужасы',
+            'Шерлок': 'Детективы',
+            'Звёздные воины': 'Фантастика'
+        }
+        assert 'Шрек' in collector.get_books_for_children()
+        assert 'Оно' not in collector.get_books_for_children()
+        assert 'Шерлок' not in collector.get_books_for_children()
+        assert 'Звёздные воины' in collector.get_books_for_children()
+        
