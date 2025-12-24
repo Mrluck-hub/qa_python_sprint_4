@@ -1,9 +1,22 @@
+import pytest
+
 class TestBooksCollector:
-          
-    def test_add_new_book_name_length_40_is_added(self, collector):
-        long_name = 'a'*40
-        collector.add_new_book(long_name)
-        assert long_name in collector.books_genre
+   
+    @pytest.mark.parametrize('name', [
+        "a",
+        "a"*40,
+    ])     
+    def test_add_new_book_name_is_valid(self, collector, name):
+        collector.add_new_book(name)
+        assert name in collector.books_genre
+
+    @pytest.mark.parametrize('name', [
+        "",
+        "a"*41,
+    ])     
+    def test_add_new_book_name_is_not_valid(self, collector, name):
+        collector.add_new_book(name)
+        assert name not in collector.books_genre
 
     def test_set_book_genre_to_non_existent_book(self, collector):
         collector.set_book_genre('Несуществующая книга', 'Ужасы')
