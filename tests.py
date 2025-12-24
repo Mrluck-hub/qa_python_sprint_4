@@ -64,3 +64,11 @@ class TestBooksCollector:
         collector.add_book_in_favorites("Оса")
         collector.delete_book_from_favorites("Оса")
         assert "Оса" not in collector.favorites
+
+    def test_get_list_of_favorites_books_is_empty_initially(self, collector):
+        assert collector.get_list_of_favorites_books() == []
+
+    def test_get_list_of_favorites_books(self, collector):
+        collector.add_new_book("Оса")
+        collector.add_book_in_favorites("Оса")
+        assert "Оса" in collector.get_list_of_favorites_books()
