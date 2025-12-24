@@ -37,6 +37,11 @@ class TestBooksCollector:
     def test_get_books_genre_is_empty_initially(self, collector):
         assert collector.get_books_genre() == {}
 
+    def test_get_books_genre_has_items(self, collector):
+        collector.add_new_book('Оно')
+        collector.set_book_genre('Оно', 'Ужасы')
+        assert collector.get_books_genre() == {'Оно': 'Ужасы'}
+
     def test_get_books_for_children_excludes_genres(self, collector):
         collector.books_genre = {
             'Шрек': 'Мультфильмы',
